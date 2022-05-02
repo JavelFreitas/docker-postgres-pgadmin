@@ -1,0 +1,3 @@
+docker-compose.yml
+postgres-data/
+pgadmin-data/

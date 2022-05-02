@@ -1,0 +1,27 @@
+version: "3.8" #choose your version to the file depending on docker engine https://docs.docker.com/compose/compose-file/compose-versioning/
+# create a docker-compose.yml with the following:
+services:
+  postgres:
+    image: postgres
+    restart: always # may be more useful without volumes argument.
+    ports: # choose the port you wanna work in.
+      - 5432:5432
+    environment: #choose your user, password and database name.
+      - DATABASE_HOST=127.0.0.1 # localhost IP.
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
+    volumes: # choose where you wanna put the postgres data generated in the container.
+      - ./postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment: # choose your email and password to access pgadmin.
+      - PGADMIN_DEFAULT_EMAIL=
+      - PGADMIN_DEFAULT_PASSWORD=
+    ports: # choose your ports for pgadmin.
+      - 80:80
+    volumes: # choose where you wanna put the pgadmin data generated in the container.
+      - ./pgadmin-data:/var/lib/pgadmin
+    depends_on: # will only start creating the container when the postgres container is ready.
+      - postgres
