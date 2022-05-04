@@ -1,13 +1,18 @@
+-- Destruindo e recriando tabela caso ja exista
+DROP TABLE IF EXISTS compra;
+
 CREATE TABLE IF NOT EXISTS compra ( 
   ID_NF INTEGER NOT NULL,
   ID_ITEM INTEGER NOT NULL,
   COD_PROD INTEGER NOT NULL,
-  VALOR_UNIDADE REAL NOT NULL,
+  VALOR_UNIT REAL NOT NULL,
   QUANTIDADE INTEGER NOT NULL,
   DESCONTO INTEGER
 );
 
-INSERT INTO compra (ID_NF, ID_ITEM, COD_PROD, VALOR_UNIDADE, QUANTIDADE, DESCONTO) VALUES 
+-- Inserindo itens iniciais
+
+INSERT INTO compra (ID_NF, ID_ITEM, COD_PROD, VALOR_UNIT, QUANTIDADE, DESCONTO) VALUES 
 (1, 1, 1, 25.00, 10, 5),
 (1, 2, 2, 13.50, 3, NULL),
 (1, 3, 3, 15.00, 2, NULL),
@@ -32,3 +37,13 @@ INSERT INTO compra (ID_NF, ID_ITEM, COD_PROD, VALOR_UNIDADE, QUANTIDADE, DESCONT
 (7, 2, 2, 13.50, 10, 4),
 (7, 3, 3, 15.00, 10, 4),
 (7, 4, 5, 30.00, 10, 1);
+
+-- 1.a) Buscando itens sem desconto
+SELECT id_nf, id_item, cod_prod, valor_unit FROM compra WHERE desconto IS NULL OR desconto <= 0;
+
+-- 1.b) Buscando itens com desconto + valor_vendido = (valor_unit - (valor_unit*(desconto/100)))
+SELECT id_nf, desconto, id_item, cod_prod, valor_unit, valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido FROM compra WHERE desconto IS NOT NULL OR desconto >= 0;
+
+-- 1.c) Alterar nulo para 0 no desconto das compras
+UPDATE compra SET desconto = 0 WHERE desconto IS NULL;
+SELECT * FROM compra;
