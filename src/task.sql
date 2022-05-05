@@ -83,3 +83,11 @@ FROM compra
 WHERE quantidade > 10
 GROUP BY id_nf, cod_prod
 ORDER BY id_nf ASC;
+
+-- 1.i) Colunas: id_nf valor_tot, onde valor_tot = SUM( quantidade * valor_unit), agrupar por id_nf
+SELECT id_nf, SUM(quantidade * valor_unit) AS valor_total
+FROM compra
+GROUP BY id_nf
+ORDER BY id_nf DESC;
+
+-- 1.j) Colunas: cod_prod, media. onde media = valor medios por produto
