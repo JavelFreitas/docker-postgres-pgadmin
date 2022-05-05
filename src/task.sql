@@ -39,11 +39,47 @@ INSERT INTO compra (ID_NF, ID_ITEM, COD_PROD, VALOR_UNIT, QUANTIDADE, DESCONTO) 
 (7, 4, 5, 30.00, 10, 1);
 
 -- 1.a) Buscando itens sem desconto
-SELECT id_nf, id_item, cod_prod, valor_unit FROM compra WHERE desconto IS NULL OR desconto <= 0;
+SELECT id_nf, id_item, cod_prod, valor_unit 
+FROM compra 
+WHERE desconto IS NULL OR desconto <= 0;
 
 -- 1.b) Buscando itens com desconto + valor_vendido = (valor_unit - (valor_unit*(desconto/100)))
-SELECT id_nf, desconto, id_item, cod_prod, valor_unit, valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido FROM compra WHERE desconto IS NOT NULL OR desconto >= 0;
+SELECT id_nf, desconto, id_item, cod_prod, valor_unit, valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido 
+FROM compra 
+WHERE desconto IS NOT NULL OR desconto >= 0;
 
 -- 1.c) Alterar nulo para 0 no desconto das compras
-UPDATE compra SET desconto = 0 WHERE desconto IS NULL;
+UPDATE compra 
+SET desconto = 0 
+WHERE desconto IS NULL;
+
 SELECT * FROM compra;
+
+-- 1.d) Pesquisar os itens vendidos. Colunas: id_nf, id_item, cod_prod, valor_unit, valor_total, desconto, valor_vendido. valor_total = quantidade * valor_unit, valor_vendido = (valor_unit - (valor_unit*(desconto/100)).
+SELECT id_nf, id_item, cod_prod, valor_unit, quantidade * valor_unit AS valor_total, desconto, valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido 
+FROM compra;
+
+-- 1.e) valor total id_nf e ordenar de forma decrescente. Colunas: id_ngf, valor_total. Valor Total = Somatorio (quantidade * valor_unit)
+SELECT id_nf, SUM(quantidade * valor_unit) AS valor_total
+FROM compra
+GROUP BY id_nf
+ORDER BY valor_total DESC;
+
+-- 1.f) Pesquise o valor vendido das NF e ordene o resultado do maior valor para o menor .Colunas: id_nf, valor_vendido
+SELECT id_nf, SUM(valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2))) AS valor_vendido
+FROM compra
+GROUP BY id_nf
+ORDER BY valor_vendido DESC;
+
+-- 1.g) Consulte o produto que mais vendeu no geral. Colunas: cod_prod, quantidade, agrupar por cod_prod
+SELECT cod_prod, SUM(quantidade) AS quantidade
+FROM compra
+GROUP BY cod_prod
+ORDER BY quantidade DESC;
+
+-- 1.h) Consulte as NF que foram vendidas mais de 10 unidades de pelo menos um produto. Colunas: id_nf, cod_prod, quantidade.
+SELECT id_nf, cod_prod, MIN(quantidade) AS quantidade
+FROM compra
+WHERE quantidade > 10
+GROUP BY id_nf, cod_prod
+ORDER BY id_nf ASC;
