@@ -99,3 +99,10 @@ GROUP BY cod_prod;
 SELECT cod_prod, MIN(desconto) AS menor, MAX(desconto) AS maior, ROUND(AVG(desconto), 2) AS media
 FROM compra
 GROUP BY cod_prod;
+
+-- 1.l) 
+SELECT id_nf, count(id_item) AS qtd_item
+FROM compra
+GROUP BY id_nf 
+HAVING COUNT(id_item) > 3
+ORDER BY id_nf DESC;
