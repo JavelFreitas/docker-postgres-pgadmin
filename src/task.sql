@@ -90,4 +90,5 @@ FROM compra
 GROUP BY id_nf
 ORDER BY id_nf DESC;
 
--- 1.j) Colunas: cod_prod, media. onde media = valor medios por produto
+-- 1.j) Colunas: cod_prod, media. onde media = valor medio do desconto por produto
+
