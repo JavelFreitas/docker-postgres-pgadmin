@@ -90,5 +90,12 @@ FROM compra
 GROUP BY id_nf
 ORDER BY id_nf DESC;
 
--- 1.j) Colunas: cod_prod, media. onde media = valor medio do desconto por produto
+-- 1.j) Colunas: cod_prod, media. onde media = valor medio do desconto por produto. Agrupar por cod_prod.
+SELECT cod_prod, ROUND(AVG(desconto), 2) AS media
+FROM compra
+GROUP BY cod_prod;
 
+-- 1.k) Qual o menor, maior e o valor médio dos descontos dados por produto. Colunas: cod_prod, menor, maior, media, agrupar por cod_prod.
+SELECT cod_prod, MIN(desconto) AS menor, MAX(desconto) AS maior, ROUND(AVG(desconto), 2) AS media
+FROM compra
+GROUP BY cod_prod;
