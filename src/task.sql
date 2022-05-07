@@ -100,8 +100,8 @@ SELECT cod_prod, MIN(desconto) AS menor, MAX(desconto) AS maior, ROUND(AVG(desco
 FROM compra
 GROUP BY cod_prod;
 
--- 1.l) 
-SELECT id_nf, count(id_item) AS qtd_item
+-- 1.l) Quais NF possuem mais de 3 itens vendidos. Colunas: id_nf, qtd_itens
+SELECT id_nf, count(id_item) AS qtd_itens
 FROM compra
 GROUP BY id_nf 
 HAVING COUNT(id_item) > 3
