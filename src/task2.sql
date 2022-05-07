@@ -81,35 +81,52 @@ CREATE TABLE Historico (
 );
 
 INSERT INTO Historico (mat, cod_disc, cod_turma, cod_prof, ano, frequencia, nota) VALUES
-(2015010101, 'BD', 1, 212131, 2015, 100, 10),
 (2015010101, 'BD', 2, 212131, 2015, 100, 6),
 (2015010101, 'POO', 1, 192011, 2015, 100, 7),
 (2015010101, 'WEB', 1, 192011, 2015, 50, 8),
 (2015010101, 'ENG', 1, 122135, 2015, 80, 9),
 (2015010102, 'BD', 1, 212131, 2015, 80, 9),
-(2015010102, 'BD', 2, 212131, 2015, 60, 6),
 (2015010102, 'POO', 1, 192011, 2015, 90, 5),
 (2015010102, 'WEB', 1, 192011, 2015, 40, 8),
 (2015010102, 'ENG', 1, 122135, 2015, 10, 9),
 (2015010103, 'BD', 1, 212131, 2015, 100, 10),
-(2015010103, 'BD', 2, 212131, 2015, 100, 2),
 (2015010103, 'POO', 1, 192011, 2015, 100, 5),
 (2015010103, 'WEB', 1, 192011, 2015, 50, 1),
 (2015010103, 'ENG', 1, 122135, 2015, 80, 9),
 (2015010104, 'BD', 1, 212131, 2015, 10, 1),
-(2015010104, 'BD', 2, 212131, 2015, 10, 10),
 (2015010104, 'POO', 1, 192011, 2015, 10, 7),
 (2015010104, 'WEB', 1, 192011, 2015, 5, 8),
 (2015010104, 'ENG', 1, 122135, 2015, 8, 10),
-(2015010105, 'BD', 1, 212131, 2015, 8, 10),
 (2015010105, 'BD', 2, 212131, 2015, 8, 10),
 (2015010105, 'POO', 1, 192011, 2015, 8, 10),
 (2015010105, 'WEB', 1, 192011, 2015, 20, 10),
 (2015010105, 'ENG', 1, 122135, 2015, 60, 10),
-(2015010106, 'BD', 1, 212131, 2015, 100, 10),
 (2015010106, 'BD', 2, 212131, 2015, 100, 10),
 (2015010106, 'POO', 1, 192011, 2015, 100, 10),
 (2015010106, 'WEB', 1, 192011, 2015, 50, 10),
 (2015010106, 'ENG', 1, 122135, 2015, 80, 10);
 
 SELECT * FROM Historico;
+
+-- 2.a) Encontre a MAT dos alunos com nota em BD em 2015 menor que 5 (obs: BD = código da disciplinas).
+
+SELECT mat FROM Historico WHERE cod_disc='BD' AND nota<5 AND ano=2015;
+
+-- 2.b) Encontre a MAT e calcule a média das notas dos alunos na disciplina de POO em 2015.
+
+SELECT mat, AVG(nota) AS media_notas
+FROM Historico
+WHERE cod_disc='POO' AND ano=2015
+GROUP BY mat;
+
+-- 2.c) Encontre a MAT e calcule a média das notas dos alunos na disciplina de POO em 2015 e que esta média seja superior a 6.
+SELECT mat, AVG(nota) AS media_notas
+FROM Historico
+WHERE cod_disc='POO' AND ano=2015
+GROUP BY mat
+HAVING AVG(nota)>6;
+
+-- 2.d) Encontre quantos alunos não são de Natal.
+SELECT COUNT(mat)
+FROM Alunos
+WHERE cidade!='NATAL';

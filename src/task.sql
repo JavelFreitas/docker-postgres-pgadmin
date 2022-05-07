@@ -101,7 +101,7 @@ FROM compra
 GROUP BY cod_prod;
 
 -- 1.l) Quais NF possuem mais de 3 itens vendidos. Colunas: id_nf, qtd_itens
-SELECT id_nf, count(id_item) AS qtd_itens
+SELECT id_nf, COUNT(id_item) AS qtd_itens
 FROM compra
 GROUP BY id_nf 
 HAVING COUNT(id_item) > 3
