@@ -56,7 +56,13 @@ WHERE desconto IS NULL;
 SELECT * FROM compra;
 
 -- 1.d) Pesquisar os itens vendidos. Colunas: id_nf, id_item, cod_prod, valor_unit, valor_total, desconto, valor_vendido. valor_total = quantidade * valor_unit, valor_vendido = (valor_unit - (valor_unit*(desconto/100)).
-SELECT id_nf, id_item, cod_prod, valor_unit, quantidade * valor_unit AS valor_total, desconto, valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido 
+SELECT id_nf, 
+id_item, 
+cod_prod, 
+valor_unit, 
+quantidade * valor_unit AS valor_total, 
+desconto, 
+valor_unit - (valor_unit * ROUND((desconto * 1.0) / 100, 2)) AS valor_vendido 
 FROM compra;
 
 -- 1.e) valor total id_nf e ordenar de forma decrescente. Colunas: id_ngf, valor_total. Valor Total = Somatorio (quantidade * valor_unit)

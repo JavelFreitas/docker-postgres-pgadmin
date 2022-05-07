@@ -110,7 +110,9 @@ SELECT * FROM Historico;
 
 -- 2.a) Encontre a MAT dos alunos com nota em BD em 2015 menor que 5 (obs: BD = código da disciplinas).
 
-SELECT mat FROM Historico WHERE cod_disc='BD' AND nota<5 AND ano=2015;
+SELECT mat 
+FROM Historico 
+WHERE cod_disc='BD' AND nota<5 AND ano=2015;
 
 -- 2.b) Encontre a MAT e calcule a média das notas dos alunos na disciplina de POO em 2015.
 
