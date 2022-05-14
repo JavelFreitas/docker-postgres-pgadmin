@@ -1,7 +1,6 @@
 
 <h1 align="center">Atlântico Academy</h1>
-<p align="center">Atividade 02 SQL</p>
-<h1 align="center">
+<h2 align="center">Atividade 02 SQL</h2>
 
 <h2>Tópicos</h2>
 
