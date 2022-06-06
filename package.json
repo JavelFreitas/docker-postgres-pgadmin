@@ -1,0 +1,29 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">Atlântico Academy</h1>\r <h2 align=\"center\">Atividade 02 SQL</h2>",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavelFreitas/docker-postgres-pgadmin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavelFreitas/docker-postgres-pgadmin/issues"
+  },
+  "homepage": "https://github.com/JavelFreitas/docker-postgres-pgadmin#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3"
+  },
+  "type": "module"
+}

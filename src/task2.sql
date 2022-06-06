@@ -6,6 +6,9 @@ CREATE TABLE Alunos(
     cidade VARCHAR(255) NOT NULL,
     PRIMARY KEY (mat)
 );
+ALTER TABLE Alunos
+ADD email VARCHAR(255),
+ADD password VARCHAR(255);
 
 INSERT INTO Alunos (mat, nome, endereco, cidade) VALUES
 (2015010101, 'JOSE DE ALENCAR', 'RUA DAS ALMAS', 'NATAL'),

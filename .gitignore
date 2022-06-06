@@ -1,3 +1,5 @@
 docker-compose.yml
 postgres-data/
 pgadmin-data/
+node_modules/
+.env
